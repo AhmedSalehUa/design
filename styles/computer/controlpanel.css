@@ -1,0 +1,154 @@
+@media (min-width: 1200px) {
+    @font-face {
+        font-family: special;
+        src: url(../../fonts/FjallaOne-Regular.ttf);
+    }
+    html {
+        height: 100%;
+        font-size: 14px;
+    }
+    body {
+        min-height: 100%;
+        font-size: 14px;
+        transition: all .5s linear;
+    }
+    .main-div {
+        padding: 0px;
+        margin: 0px;
+        height: 100vh;
+    }
+    .main-navigator {
+        background-color: #313F48;
+        transition: all .5s linear;
+        overflow: auto;
+        height: 100%;
+    }
+    .content-div {
+        background-color: #fff;
+        margin-top: 20px;
+        height: 100%;
+    }
+    .nav-button {
+        font-size: 30px;
+        margin: 15px 15px;
+        color: #fff;
+    }
+    .navigation-panel-div {
+        margin-bottom: 30px;
+        max-height: 80px;
+    }
+    .navigation-panel-div:hover {
+        color: #F5581D;
+    }
+    .navigation-panel-images {
+        width: 60px;
+        height: 60px;
+        align-items: center;
+        color: #fff;
+    }
+    .navigation-panel-images>i {
+        font-size: 40px;
+        color: #fff;
+    }
+    .navigation-panel-content {
+        width: 70%;
+        height: 50px;
+        color: #fff;
+    }
+    .navigation-panel-content>p {
+        display: inline;
+        font-weight: 200;
+        color: #fff;
+        font-family: special;
+        font-size: 2vw;
+    }
+    #teacher,
+    #teacher-nickname {
+        font-weight: 700;
+        font-size: 1.4rem;
+        color: #fff;
+        text-transform: uppercase;
+        font-family: special;
+    }
+    .exam-title-class {
+        border-color: transparent;
+        overflow: hidden;
+        resize: none;
+        display: block;
+        font-family: special;
+        text-align: center;
+        font-size: 2vw;
+        margin-bottom: 10px;
+        height: 150px;
+        z-index: 1;
+    }
+    .element-div {
+        color: black;
+    }
+    .exam-title-class:focus {
+        border: 1px solid #313F48;
+        outline: none !important;
+    }
+    .close-icon {
+        height: 0;
+        float: left;
+        color: black;
+        font-size: 28px;
+        position: relative;
+        top: -15px;
+        display: none;
+        left: -30px;
+        z-index: 10000;
+    }
+    .close-icon:hover {
+        color: #F5581D;
+    }
+    .newElement-style {
+        display: block;
+        text-align: right;
+        font-size: 30px;
+    }
+    /* .cat-container {}*/
+    .cat-row {
+        transition: 0.5s;
+        margin-bottom: 5px;
+    }
+    .cat-icon {
+        border: 2px solid #F5581D;
+        height: 150px;
+    }
+    .cat-icon:hover {
+        background-color: #f58962;
+        box-shadow: 2px 2px #F5581D;
+        color: #fff;
+    }
+    .cat-icon-sympole {
+        padding: 10px;
+        font-size: 70px;
+        min-width: 100%;
+        text-align: center;
+    }
+    .cat-icon-text {
+        font-size: 20px;
+        min-width: 100%;
+        text-align: center;
+        padding: 10px;
+        font-family: special;
+        text-transform: uppercase;
+        font-weight: 700;
+    }
+    /* this code to remove container margins*/
+    .alt-grid [class*="col-"] {
+        padding-left: 0;
+        padding-right: 0
+    }
+    .alt-grid .row {
+        margin-left: 0;
+        margin-right: 0
+    }
+    .alt-grid .container {
+        width: 100%;
+        max-width: none;
+        padding: 0;
+    }
+}

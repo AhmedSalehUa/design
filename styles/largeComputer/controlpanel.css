@@ -1,0 +1,11 @@
+@media (min-width: 992px) and (max-width: 1200px) {
+    html {
+        height: 100%;
+    }
+    body {
+        min-height: 100%;
+    }
+    .a {
+        background-color: black;
+    }
+}
