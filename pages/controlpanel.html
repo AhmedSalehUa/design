@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width-device-width, initial-scale-1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Teacher Controlpanel</title>
     <link rel="stylesheet" type="text/css" href="../styles/all.min.css">
     <link rel="stylesheet" type="text/css" href="../styles/bootstrap.css">
@@ -67,17 +67,46 @@
             <div class="row element-div">
                 <textarea id="exam-title " class="exam-title-class col-sm-8 col-sm-offset-2 " placeholder="Exam Title "></textarea>
             </div>
+            <!-- <div class="row  " onmouseover="showClose(this)" onmouseout="hideClose(this)">0
+                <i id="newElement" class="fas fa-times-circle col-sm-offset-2 close-icon"></i>
+                <div class="col-sm-8 col-sm-offset-2 question-div">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active"><a href="#question" aria-controls="question" role="tab" data-toggle="tab">Question</a></li>
+                        <li role="presentation"><a href="#details" aria-controls="details" role="tab" data-toggle="tab">Details</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="question">
+                            <p class="text-left q-title">Useable Inputs : </p>
+                            <button type="button" class="btn btn-primary" onclick="addQuestion(this)">add/continue Question</button>
+                            <button type="button" class="btn btn-success" onclick="addAnswer(this)">add answer</button>
+                            <p class="text-left q-title">Answers : </p>
+                            <div class="question-group">
+                                <input type="text" class="question-field" onkeydown="responseInput(this)" onkeyup="responseInput(this)" required>
+                                <label class="question-group-label">Question</label>
+                            </div>
+
+                        </div>
+                        <div role="tabpanel" class="tab-pane details-question" id="details">
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">Marks</span>
+                                <input type="number" class="form-control" placeholder="" aria-describedby="basic-addon1">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
 
             <div class="row ">
-                <i onclick="creatNewElement(this) " id="newElement " class=" newElement-style fas fa-plus-circle col-sm-8 col-sm-offset-2 "></i>
+                <i onclick="creatNewElements(this) " data-toggle="tooltip" data-placement="right" title="Add new Question " id="newElement " class=" newElement-style fas fa-plus-circle col-sm-8 col-sm-offset-2 "></i>
             </div>
 
         </div>
     </div>
-    <script src="../scripts/controlpanelCreator.js "></script>
-    <script src="../scripts/controlpanel.js "></script>
     <script src="../scripts/jquery-3.4.1.min.js "></script>
     <script src="../scripts/bootstrap.min.js "></script>
+    <script src="../scripts/controlpanelCreator.js "></script>
+    <script src="../scripts/controlpanel.js "></script>
+
 </body>
 
 </html>

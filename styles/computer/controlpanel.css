@@ -10,7 +10,7 @@
     body {
         min-height: 100%;
         font-size: 14px;
-        transition: all .5s linear;
+        overflow: hidden;
     }
     .main-div {
         padding: 0px;
@@ -27,6 +27,8 @@
         background-color: #fff;
         margin-top: 20px;
         height: 100%;
+        transition: all .5s linear;
+        overflow: scroll;
     }
     .nav-button {
         font-size: 30px;
@@ -137,6 +139,56 @@
         text-transform: uppercase;
         font-weight: 700;
     }
+    .question-div {
+        border: 1px solid #F5581D;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+    .q-title {
+        font-family: special;
+        padding-top: 10px;
+        margin-bottom: 10px;
+    }
+    .q-radio {
+        width: 20px;
+        height: 20px;
+    }
+    .details-question {
+        padding-top: 10px;
+    }
+    textarea:focus,
+    .txt-are:focus,
+    input[type="text"]:focus,
+    input[type="password"]:focus,
+    input[type="datetime"]:focus,
+    input[type="datetime-local"]:focus,
+    input[type="date"]:focus,
+    input[type="month"]:focus,
+    input[type="time"]:focus,
+    input[type="week"]:focus,
+    input[type="number"]:focus,
+    input[type="email"]:focus,
+    input[type="url"]:focus,
+    input[type="search"]:focus,
+    input[type="tel"]:focus,
+    input[type="color"]:focus,
+    .uneditable-input:focus {
+        border-color: #F5581D;
+        outline: 0 none;
+    }
+    .tab-content {
+        display: flex;
+    }
+    .tab-content>.tab-pane {
+        display: block;
+        /* undo "display: none;" */
+        visibility: hidden;
+        margin-right: -100%;
+        width: 100%;
+    }
+    .tab-content>.active {
+        visibility: visible;
+    }
     /* this code to remove container margins*/
     .alt-grid [class*="col-"] {
         padding-left: 0;
@@ -150,5 +202,48 @@
         width: 100%;
         max-width: none;
         padding: 0;
+    }
+    /*for floating label*/
+    .question-group {
+        position: relative;
+        margin-top: 25px;
+        display: inline-block;
+    }
+    .answer-group {
+        position: relative;
+        margin-top: 25px;
+        display: inline-block;
+    }
+    .question-field {
+        font-size: 18px;
+        padding: 10px 10px 10px 5px;
+        display: block;
+        width: 20px;
+        border: none;
+        border-bottom: 1px solid #313F48;
+    }
+    .question-field:focus {
+        outline: none;
+    }
+    .question-group-label {
+        color: #999;
+        font-size: 18px;
+        font-weight: normal;
+        position: absolute;
+        pointer-events: none;
+        left: 5px;
+        top: 10px;
+        transition: 0.2s ease all;
+        -moz-transition: 0.2s ease all;
+        -webkit-transition: 0.2s ease all;
+    }
+    .question-field:focus~.question-group-label,
+    .question-field:valid~.question-group-label {
+        top: -20px;
+        font-size: 14px;
+        color: #F5581D;
+    }
+    .question-field {
+        width: 100px;
     }
 }
