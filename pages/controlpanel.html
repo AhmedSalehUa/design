@@ -12,6 +12,8 @@
     <link rel="stylesheet" type="text/css" href="../styles/computer/controlpanel.css">
     <link rel="stylesheet" type="text/css" href="../styles/tablet/controlpanel.css">
     <link rel="stylesheet" type="text/css" href="../styles/mobile/controlpanel.css">
+    <link rel="stylesheet" href="https://unpkg.com/placeholder-loading/dist/css/placeholder-loading.min.css">
+
     <script src="../scripts/jquery-3.4.1.min.js"></script>
     <script src="../scripts/html5shiv.min.js"></script>
 </head>
@@ -20,25 +22,25 @@
     <div class="container-fluid main-div">
         <div class="col-sm-3 main-navigator" id="navigation-panel">
             <i class="fas fa-bars nav-button" id="navigation-button"></i>
-            <div class="container-fluid navigation-panel-div" onclick="buttonClicked(this)">
+            <div class="navBtn container-fluid navigation-panel-div" onclick="getProfile(this)">
                 <div class="col-sm-4 navigation-panel-images">
                     <i class="fas fa-chalkboard-teacher"></i>
                 </div>
                 <div class="col-sm-8 navigation-panel-content " id="navigation-panel-content">
-                    <p id="teacher-nickname">Mr.</p>
-                    <p id="teacher" class="text-left">Ahmed Saleh</p>
+                    <p id="teacher-nickname"></p>
+                    <p id="teacher" class="text-left">Mr.Ahmed Saleh</p>
                 </div>
             </div>
             <br> <br>
-            <div class="container-fluid navigation-panel-div" onclick="buttonClicked(this)">
-                <div class="col-sm-4 navigation-panel-images">
+            <div class="navBtn container-fluid col-centered navigation-panel-div" onclick="getNewExamPage(this)">
+                <div class="col-sm-4 text-center navigation-panel-images">
                     <i class="fas fa-plus-circle"></i>
                 </div>
                 <div class="col-sm-8 navigation-panel-content" id="navigation-panel-content">
                     <p class="text-left">New Exam</p>
                 </div>
             </div>
-            <div class="container-fluid navigation-panel-div" onclick="buttonClicked(this)">
+            <div class="navBtn container-fluid navigation-panel-div" onclick="getStudentAnswersPage(this)">
                 <div class="col-sm-4 navigation-panel-images">
                     <i class="fas fa-file-contract"></i>
                 </div>
@@ -46,7 +48,7 @@
                     <p class="text-left">Student Answers</p>
                 </div>
             </div>
-            <div class="container-fluid navigation-panel-div" onclick="buttonClicked(this)">
+            <div id="statisticDiv" class="navBtn container-fluid navigation-panel-div" onclick="getStatisticsPage()">
                 <div class="col-sm-4 navigation-panel-images">
                     <i class="fas fa-chart-pie"></i>
                 </div>
@@ -54,7 +56,7 @@
                     <p class="text-left">Statistics</p>
                 </div>
             </div>
-            <div class="container-fluid navigation-panel-div" onclick="buttonClicked(this)">
+            <div class="navBtn container-fluid navigation-panel-div" onclick="getSettingsPage(this)">
                 <div class="col-sm-4 navigation-panel-images">
                     <i class="fas fa-sliders-h"></i>
                 </div>
@@ -64,10 +66,25 @@
             </div>
         </div>
         <div id="contentDiv" class="col-sm-9 container-fluid content-div">
-            <div class="row element-div">
-                <textarea id="exam-title " class="exam-title-class col-sm-8 col-sm-offset-2 " placeholder="Exam Title "></textarea>
+            <div id="placeholder-loading" class="preloader js-preloader flex-center">
+                <div class="dots">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
             </div>
-            <!-- <div class="row  " onmouseover="showClose(this)" onmouseout="hideClose(this)">0
+        </div>
+    </div>
+    <script src="../scripts/jquery-3.4.1.min.js "></script>
+    <script src="../scripts/bootstrap.min.js "></script>
+    <script src="../scripts/controlpanelCreator.js "></script>
+    <script src="../scripts/controlpanel.js "></script>
+
+</body>
+
+</html>
+<!--
+    <div class="row  " onmouseover="showClose(this)" onmouseout="hideClose(this)">0
                 <i id="newElement" class="fas fa-times-circle col-sm-offset-2 close-icon"></i>
                 <div class="col-sm-8 col-sm-offset-2 question-div">
                     <ul class="nav nav-tabs" role="tablist">
@@ -94,19 +111,5 @@
                         </div>
                     </div>
                 </div>
-            </div> -->
-
-            <div class="row ">
-                <i onclick="creatNewElements(this) " data-toggle="tooltip" data-placement="right" title="Add new Question " id="newElement " class=" newElement-style fas fa-plus-circle col-sm-8 col-sm-offset-2 "></i>
-            </div>
-
-        </div>
-    </div>
-    <script src="../scripts/jquery-3.4.1.min.js "></script>
-    <script src="../scripts/bootstrap.min.js "></script>
-    <script src="../scripts/controlpanelCreator.js "></script>
-    <script src="../scripts/controlpanel.js "></script>
-
-</body>
-
-</html>
+            </div>  
+-->

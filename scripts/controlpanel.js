@@ -28,12 +28,6 @@ function togglePanel() {
     }
 }
 
-function buttonClicked(button) {
-
-    var ba = button.children[1].children[0].innerHTML = "DR.";
-
-}
-
 function showClose(div) {
     div.children[0].style.display = 'block';
 }
@@ -90,7 +84,7 @@ var QuestionTypes = {
     q2: { name: "Short Answers", fun: "short" },
     q3: { name: "Math", fun: "math" },
     q4: { name: "Complete Syntax", fun: "complete" },
-    q5: { name: "Multi Choice Question", fun: "multi" },
+    q5: { name: "Multi Answer Question", fun: "multiAnswers" },
     q6: { name: "Short Answers", fun: "short" },
     q7: { name: "Math", fun: "math" },
     q8: { name: "Complete Syntax", fun: "complete" }
@@ -110,6 +104,10 @@ function creatQuestionWithType(div, question) {
         case "complete":
             questionContent = getCompeletQuestionDiv(divIndex);
             break;
+        case "multiAnswers":
+            questionContent = getMultiAnswerDiv(divIndex);
+            break;
+
 
     }
 
