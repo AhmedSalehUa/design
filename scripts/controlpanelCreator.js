@@ -6,7 +6,7 @@ function getNewExamPage(div) {
 
     var titleElement = document.createElement("textarea");
     titleElement.id = "exam-title";
-    titleElement.classList.add("exam-title-class", "col-sm-8", "col-sm-offset-2");
+    titleElement.classList.add("exam-title-class", "col-sm-8", "ml-sm-auto", "mr-sm-auto");
     titleElement.setAttribute("placeholder", "Exam Title");
     titDiv.appendChild(titleElement);
 
@@ -15,12 +15,18 @@ function getNewExamPage(div) {
 
     var addNewQuestioElement = document.createElement("i");
     addNewQuestioElement.id = "newElement";
-    addNewQuestioElement.classList.add("newElement-style", "fas", "fa-plus-circle", "col-sm-8", "col-sm-offset-2");
+    addNewQuestioElement.classList.add("newElement-style", "fas", "fa-plus-circle", "col-sm-8", "ml-sm-auto", "mr-sm-auto");
     addNewQuestioElement.onclick = function() { return creatNewElements(this); };
     addNewQuestioElement.setAttribute("data-toggle", "tooltip");
     addNewQuestioElement.setAttribute("data-placement", "right");
     addNewQuestioElement.setAttribute("title", "Add new Question");
     addNewQuestioDiv.appendChild(addNewQuestioElement);
+
+    var float = document.createElement("div");
+    float.classList.add("submitting");
+    var floatIcon = document.createElement("i");
+    floatIcon.classList.add("far", "fa-save");
+    float.appendChild(floatIcon);
 
     var navs = document.getElementsByClassName("navBtn");
     for (var a = 0; a < navs.length; a++) {
@@ -32,7 +38,8 @@ function getNewExamPage(div) {
     body.innerHTML = "";
     body.appendChild(titDiv);
     body.appendChild(addNewQuestioDiv);
-    $('[data-toggle="tooltip"]').tooltip();
+    body.appendChild(float);
+    $('#newElement').tooltip();
 
 }
 
@@ -50,22 +57,234 @@ function getStudentAnswersPage(div) {
 }
 
 function getStatisticsPage() {
-    var millisecondsToWait = 1000;
-    var placeholder = document.getElementById("placeholder-loading");
 
-    placeholder.style.display = "block";
-    setTimeout(function() {
-        var navs = document.getElementsByClassName("navBtn");
-        for (var a = 0; a < navs.length; a++) {
-            navs[a].classList.remove("active-ele");
+    var navs = document.getElementsByClassName("navBtn");
+    for (var a = 0; a < navs.length; a++) {
+        navs[a].classList.remove("active-ele");
+    }
+    var div = document.getElementById("statisticDiv");
+    div.classList.add("active-ele");
+
+    var body = document.getElementById("contentDiv");
+    body.innerHTML = '<div class="container-fluid">' +
+        '            <div class="d-sm-flex align-items-center justify-content-between' +
+        '                mb-4">' +
+        '                <h1 class="h3 mb-0 text-gray-800">STATISTICS</h1>' +
+        '            </div>' +
+        '            <div class="row">' +
+        '                <div class="col-xl-3 col-md-6 mb-4">' +
+        '                    <div class="card border-left-primary shadow h-100 py-2">' +
+        '                        <div class="card-body">' +
+        '                            <div class="row no-gutters align-items-center">' +
+        '                                <div class="col mr-2">' +
+        '                                    <div class="text-xs font-weight-bold' +
+        '                                        text-primary text-uppercase mb-1">' +
+        '                                        Students Number</div>' +
+        '                                    <div class="h5 mb-0 font-weight-bold' +
+        '                                        text-gray-800">40,000</div>' +
+        '                                </div>' +
+        '                                <div class="col-auto">' +
+        '                                    <i class="fas fa-calendar fa-2x' +
+        '                                        text-gray-300"></i>' +
+        '                                </div>' +
+        '                            </div>' +
+        '                        </div>' +
+        '                    </div>' +
+        '                </div>' +
+        '                <div class="col-xl-3 col-md-6 mb-4">' +
+        '                    <div class="card border-left-success shadow h-100 py-2">' +
+        '                        <div class="card-body">' +
+        '                            <div class="row no-gutters align-items-center">' +
+        '                                <div class="col mr-2">' +
+        '                                    <div class="text-xs font-weight-bold' +
+        '                                        text-success text-uppercase mb-1">' +
+        '                                        Teachers Number</div>' +
+        '                                    <div class="h5 mb-0 font-weight-bold' +
+        '                                        text-gray-800">2,000</div>' +
+        '                                </div>' +
+        '                                <div class="col-auto">' +
+        '                                    <i class="fas fa-calendar fa-2x' +
+        '                                        text-gray-300"></i>' +
+        '                                </div>' +
+        '                            </div>' +
+        '                        </div>' +
+        '                    </div>' +
+        '                </div>' +
+        '                <div class="col-xl-3 col-md-6 mb-4">' +
+        '                    <div class="card border-left-info shadow h-100 py-2">' +
+        '                        <div class="card-body">' +
+        '                            <div class="row no-gutters align-items-center">' +
+        '                                <div class="col mr-2">' +
+        '                                    <div class="text-xs font-weight-bold' +
+        '                                        text-info text-uppercase mb-1">Exams' +
+        '                                    </div>' +
+        '                                    <div class="row no-gutters' +
+        '                                        align-items-center">' +
+        '                                        <div class="col-auto">' +
+        '                                            <div class="h5 mb-0 mr-3' +
+        '                                                font-weight-bold text-gray-800">50%</div>' +
+        '                                        </div>' +
+        '                                        <div class="col">' +
+        '                                            <div class="progress progress-sm' +
+        '                                                mr-2">' +
+        '                                                <div class="progress-bar' +
+        '                                                    bg-info" role="progressbar"' +
+        '                                                    style="width: 50%"' +
+        '                                                    aria-valuenow="50"' +
+        '                                                    aria-valuemin="0"' +
+        '                                                    aria-valuemax="100"></div>' +
+        '                                            </div>' +
+        '                                        </div>' +
+        '                                    </div>' +
+        '                                </div>' +
+        '                                <div class="col-auto">' +
+        '                                    <i class="fas fa-clipboard-list fa-2x' +
+        '                                        text-gray-300"></i>' +
+        '                                </div>' +
+        '                            </div>' +
+        '                        </div>' +
+        '                    </div>' +
+        '                </div>' +
+        '                <div class="col-xl-3 col-md-6 mb-4">' +
+        '                    <div class="card border-left-warning shadow h-100 py-2">' +
+        '                        <div class="card-body">' +
+        '                            <div class="row no-gutters align-items-center">' +
+        '                                <div class="col mr-2">' +
+        '                                    <div class="text-xs font-weight-bold' +
+        '                                        text-warning text-uppercase mb-1">Comments' +
+        '                                    </div>' +
+        '                                    <div class="h5 mb-0 font-weight-bold' +
+        '                                        text-gray-800">18</div>' +
+        '                                </div>' +
+        '                                <div class="col-auto">' +
+        '                                    <i class="fas fa-comments fa-2x' +
+        '                                        text-gray-300"></i>' +
+        '                                </div>' +
+        '                            </div>' +
+        '                        </div>' +
+        '                    </div>' +
+        '                </div>' +
+        '            </div>' +
+        '            <div class="row">' +
+        '                <div class="col-lg-6 mb-4">' +
+        '                    <div class="card shadow mb-4">' +
+        '                        <div class="card-header py-3">' +
+        '                            <h6 class="m-0 font-weight-bold text-primary">Projects</h6>' +
+        '                        </div>' +
+        '                        <div class="card-body">' +
+        '                            <h4 class="small font-weight-bold">Server Migration' +
+        '                                <span class="float-right">50%</span></h4>' +
+        '                            <div class="progress mb-4">' +
+        '                                <div class="progress-bar bg-danger"' +
+        '                                    role="progressbar" style="width: 50%"' +
+        '                                    aria-valuenow="20" aria-valuemin="0"' +
+        '                                    aria-valuemax="100"></div>' +
+        '                            </div>' +
+        '                            <h4 class="small font-weight-bold">Sales Tracking' +
+        '                                <span class="float-right">40%</span></h4>' +
+        '                            <div class="progress mb-4">' +
+        '                                <div class="progress-bar bg-warning"' +
+        '                                    role="progressbar" style="width: 40%"' +
+        '                                    aria-valuenow="40" aria-valuemin="0"' +
+        '                                    aria-valuemax="100"></div>' +
+        '                            </div>' +
+        '                            <h4 class="small font-weight-bold">Customer Database' +
+        '                                <span class="float-right">60%</span></h4>' +
+        '                            <div class="progress mb-4">' +
+        '                                <div class="progress-bar" role="progressbar"' +
+        '                                    style="width: 60%" aria-valuenow="60"' +
+        '                                    aria-valuemin="0" aria-valuemax="100"></div>' +
+        '                            </div>' +
+        '                            <h4 class="small font-weight-bold">Payout Details' +
+        '                                <span class="float-right">80%</span></h4>' +
+        '                            <div class="progress mb-4">' +
+        '                                <div class="progress-bar bg-info"' +
+        '                                    role="progressbar" style="width: 80%"' +
+        '                                    aria-valuenow="80" aria-valuemin="0"' +
+        '                                    aria-valuemax="100"></div>' +
+        '                            </div>' +
+        '                            <h4 class="small font-weight-bold">Account Setup' +
+        '                                <span class="float-right">Complete!</span></h4>' +
+        '                            <div class="progress">' +
+        '                                <div class="progress-bar bg-success"' +
+        '                                    role="progressbar" style="width: 100%"' +
+        '                                    aria-valuenow="100" aria-valuemin="0"' +
+        '                                    aria-valuemax="100"></div>' +
+        '                            </div>' +
+        '                        </div>' +
+        '                    </div>' +
+        '                </div>' +
+        '                <div class="col-xl-4 col-lg-5">' +
+        '                    <div class="card shadow mb-4">' +
+        '                        <div class="card-header py-3 d-flex flex-row' +
+        '                            align-items-center justify-content-between">' +
+        '                            <h6 class="m-0 font-weight-bold text-primary">Revenue' +
+        '                                Sources</h6>' +
+        '                        </div>' +
+        '                        <div class="card-body">' +
+        '                            <div class="chart-pie pt-4 pb-2">' +
+        '                                <canvas id="doughnut-chart" width="400"' +
+        '                                    height="300"></canvas>' +
+        '                            </div>' +
+        '                            <div class="mt-4 text-center small">' +
+        '                                <span class="mr-2">' +
+        '                                    <i class="fas fa-circle text-primary"></i>' +
+        '                                    Direct' +
+        '                                </span>' +
+        '                                <span class="mr-2">' +
+        '                                    <i class="fas fa-circle text-success"></i>' +
+        '                                    Social' +
+        '                                </span>' +
+        '                                <span class="mr-2">' +
+        '                                    <i class="fas fa-circle text-info"></i>' +
+        '                                    Referral' +
+        '                                </span>' +
+        '                            </div>' +
+        '                        </div>' +
+        '                    </div>' +
+        '                </div>' +
+        '            </div>' +
+        '' +
+        '        </div>' +
+        '        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"' +
+        '            aria-labelledby="exampleModalLabel" aria-hidden="true">' +
+        '            <div class="modal-dialog" role="document">' +
+        '                <div class="modal-content">' +
+        '                    <div class="modal-header">' +
+        '                        <h5 class="modal-title" id="exampleModalLabel">Ready to' +
+        '                            Leave?</h5>' +
+        '                        <button class="close" type="button" data-dismiss="modal"' +
+        '                            aria-label="Close">' +
+        '                            <span aria-hidden="true">×</span>' +
+        '                        </button>' +
+        '                    </div>' +
+        '                    <div class="modal-body">Select "Logout" below if you are' +
+        '                        ready to end your current session.</div>' +
+        '                    <div class="modal-footer">' +
+        '                        <button class="btn btn-secondary" type="button"' +
+        '                            data-dismiss="modal">Cancel</button>' +
+        '                        <a class="btn btn-primary" href="login.html">Logout</a>' +
+        '                    </div>' +
+        '                </div>' +
+        '            </div>' +
+        '        </div>';
+    new Chart(document.getElementById("doughnut-chart"), {
+        type: 'doughnut',
+        data: {
+            labels: ["Africa", "Asia", "Europe", "Latin America", "North Americas"],
+            datasets: [{
+                label: "Population (millions)",
+                backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
+                data: [2478, 5267, 734, 784, 433]
+            }]
+        },
+        options: {
+            title: {
+                display: true,
+                text: 'EXAM STATISTICS'
+            }
         }
-        var div = document.getElementById("statisticDiv");
-        div.classList.add("active-ele");
-
-        var body = document.getElementById("contentDiv");
-        body.innerHTML = "";
-        placeholder.style.display = "none";
-    }, millisecondsToWait);
+    });
 }
 
 function getSettingsPage(div) {
@@ -181,34 +400,7 @@ function getProfile(div) {
         '                                </div>' +
         '                            </div>' +
         '                            <div class="row gutters-sm">' +
-        '                                <div class="col-sm-6 mb-3">' +
-        '                                    <div class="card h-100">' +
-        '                                        <div class="card-body">' +
-        '                                            <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">assignment</i>Project Status</h6>' +
-        '                                            <small>Web Design</small>' +
-        '                                            <div class="progress mb-3" style="height: 5px">' +
-        '                                                <div class="progress-bar bg-primary" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>' +
-        '                                            </div>' +
-        '                                            <small>Website Markup</small>' +
-        '                                            <div class="progress mb-3" style="height: 5px">' +
-        '                                                <div class="progress-bar bg-primary" role="progressbar" style="width: 72%" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>' +
-        '                                            </div>' +
-        '                                            <small>One Page</small>' +
-        '                                            <div class="progress mb-3" style="height: 5px">' +
-        '                                                <div class="progress-bar bg-primary" role="progressbar" style="width: 89%" aria-valuenow="89" aria-valuemin="0" aria-valuemax="100"></div>' +
-        '                                            </div>' +
-        '                                            <small>Mobile Template</small>' +
-        '                                            <div class="progress mb-3" style="height: 5px">' +
-        '                                                <div class="progress-bar bg-primary" role="progressbar" style="width: 55%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>' +
-        '                                            </div>' +
-        '                                            <small>Backend API</small>' +
-        '                                            <div class="progress mb-3" style="height: 5px">' +
-        '                                                <div class="progress-bar bg-primary" role="progressbar" style="width: 66%" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100"></div>' +
-        '                                            </div>' +
-        '                                        </div>' +
-        '                                    </div>' +
-        '                                </div>' +
-        '                                <div class="col-sm-6 mb-3">' +
+        '                                <div class="col-sm-12 mb-3">' +
         '                                    <div class="card h-100">' +
         '                                        <div class="card-body">' +
         '                                            <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">assignment</i>Project Status</h6>' +
@@ -248,30 +440,29 @@ function getProfile(div) {
 function getMultiQuetionDiv(num) {
     var mainDiv = document.createElement("div");
     mainDiv.classList.add("row");
-    mainDiv.addEventListener("mouseover", (function() { return showClose(this) }));
-    mainDiv.addEventListener("mouseout", (function() { return hideClose(this) }));
 
+    var mainDivContent = document.createElement("div");
+    mainDivContent.classList.add("col-sm-8", "ml-sm-auto", "mr-sm-auto", "question-div");
+    mainDivContent.addEventListener("mouseover", (function() { return showClose(this) }));
+    mainDivContent.addEventListener("mouseout", (function() { return hideClose(this) }));
+
+    var closeIconDiv = document.createElement("div");
     var closeIcon = document.createElement("i");
     closeIcon.id = "newElement";
-    closeIcon.classList.add("fas", "fa-times-circle", "col-sm-offset-2", "close-icon");
+    closeIcon.classList.add("fas", "fa-times-circle", "ml-sm-auto", "mr-sm-auto", "close-icon");
     closeIcon.addEventListener("click", (function() { return closeParent(this) }));
-    mainDiv.appendChild(closeIcon);
-
-    var questionDiv = document.createElement("div");
-    questionDiv.classList.add("col-sm-8", "col-sm-offset-2", "question-div");
+    closeIconDiv.appendChild(closeIcon);
+    mainDivContent.appendChild(closeIconDiv);
 
     var tabs = document.createElement("ul");
     tabs.classList.add("nav", "nav-tabs");
-    tabs.setAttribute("role", "tablist");
 
     var qTab = document.createElement("li");
-    qTab.setAttribute("role", "presentation");
-    qTab.classList.add("active");
+    qTab.classList.add("nav-item");
 
     var qTabLink = document.createElement("a");
+    qTabLink.classList.add("nav-link", "active");
     qTabLink.setAttribute("href", "#question" + num);
-    qTabLink.setAttribute("aria-controls", "question" + num);
-    qTabLink.setAttribute("role", "tab");
     qTabLink.setAttribute("data-toggle", "tab");
     qTabLink.innerHTML = "Question";
     qTab.appendChild(qTabLink);
@@ -280,21 +471,20 @@ function getMultiQuetionDiv(num) {
     dTab.setAttribute("role", "presentation");
 
     var dTabLink = document.createElement("a");
+    dTabLink.classList.add("nav-link");
     dTabLink.setAttribute("href", "#details" + num);
-    dTabLink.setAttribute("aria-controls", "details" + num);
-    dTabLink.setAttribute("role", "tab");
     dTabLink.setAttribute("data-toggle", "tab");
     dTabLink.innerHTML = "Details";
     dTab.appendChild(dTabLink);
     tabs.appendChild(qTab);
     tabs.appendChild(dTab);
-    questionDiv.appendChild(tabs);
+    mainDivContent.appendChild(tabs);
 
     var tabContainet = document.createElement("div");
     tabContainet.classList.add("tab-content");
 
     var questionTabContainet = document.createElement("div");
-    questionTabContainet.classList.add("tab-pane", "active");
+    questionTabContainet.classList.add("tab-pane", "active", "container");
     questionTabContainet.id = "question" + num;
     questionTabContainet.setAttribute("role", "tabpanel");
 
@@ -354,12 +544,9 @@ function getMultiQuetionDiv(num) {
         answersTableBody.appendChild(answersTableBodyC);
         answersTable.appendChild(answersTableBody);
     }
-
-
-
     questionTabContainet.appendChild(answersTable);
     var detailsTabContainet = document.createElement("div");
-    detailsTabContainet.classList.add("tab-pane", "details-question");
+    detailsTabContainet.classList.add("tab-pane", "details-question", "container");
     detailsTabContainet.id = "details" + num;
     detailsTabContainet.setAttribute("role", "tabpanel");
 
@@ -382,9 +569,9 @@ function getMultiQuetionDiv(num) {
     tabContainet.appendChild(questionTabContainet);
     tabContainet.appendChild(detailsTabContainet);
 
-    questionDiv.appendChild(tabContainet);
+    mainDivContent.appendChild(tabContainet);
 
-    mainDiv.appendChild(questionDiv);
+    mainDiv.appendChild(mainDivContent);
 
     return mainDiv;
 }
@@ -392,30 +579,29 @@ function getMultiQuetionDiv(num) {
 function getMultiAnswerDiv(num) {
     var mainDiv = document.createElement("div");
     mainDiv.classList.add("row");
-    mainDiv.addEventListener("mouseover", (function() { return showClose(this) }));
-    mainDiv.addEventListener("mouseout", (function() { return hideClose(this) }));
 
+    var mainDivContent = document.createElement("div");
+    mainDivContent.classList.add("col-sm-8", "ml-sm-auto", "mr-sm-auto", "question-div");
+    mainDivContent.addEventListener("mouseover", (function() { return showClose(this) }));
+    mainDivContent.addEventListener("mouseout", (function() { return hideClose(this) }));
+
+    var closeIconDiv = document.createElement("div");
     var closeIcon = document.createElement("i");
     closeIcon.id = "newElement";
-    closeIcon.classList.add("fas", "fa-times-circle", "col-sm-offset-2", "close-icon");
+    closeIcon.classList.add("fas", "fa-times-circle", "ml-sm-auto", "mr-sm-auto", "close-icon");
     closeIcon.addEventListener("click", (function() { return closeParent(this) }));
-    mainDiv.appendChild(closeIcon);
-
-    var questionDiv = document.createElement("div");
-    questionDiv.classList.add("col-sm-8", "col-sm-offset-2", "question-div");
+    closeIconDiv.appendChild(closeIcon);
+    mainDivContent.appendChild(closeIconDiv);
 
     var tabs = document.createElement("ul");
     tabs.classList.add("nav", "nav-tabs");
-    tabs.setAttribute("role", "tablist");
 
     var qTab = document.createElement("li");
-    qTab.setAttribute("role", "presentation");
-    qTab.classList.add("active");
+    qTab.classList.add("nav-item");
 
     var qTabLink = document.createElement("a");
+    qTabLink.classList.add("nav-link", "active");
     qTabLink.setAttribute("href", "#question" + num);
-    qTabLink.setAttribute("aria-controls", "question" + num);
-    qTabLink.setAttribute("role", "tab");
     qTabLink.setAttribute("data-toggle", "tab");
     qTabLink.innerHTML = "Question";
     qTab.appendChild(qTabLink);
@@ -424,21 +610,20 @@ function getMultiAnswerDiv(num) {
     dTab.setAttribute("role", "presentation");
 
     var dTabLink = document.createElement("a");
+    dTabLink.classList.add("nav-link");
     dTabLink.setAttribute("href", "#details" + num);
-    dTabLink.setAttribute("aria-controls", "details" + num);
-    dTabLink.setAttribute("role", "tab");
     dTabLink.setAttribute("data-toggle", "tab");
     dTabLink.innerHTML = "Details";
     dTab.appendChild(dTabLink);
     tabs.appendChild(qTab);
     tabs.appendChild(dTab);
-    questionDiv.appendChild(tabs);
+    mainDivContent.appendChild(tabs);
 
     var tabContainet = document.createElement("div");
     tabContainet.classList.add("tab-content");
 
     var questionTabContainet = document.createElement("div");
-    questionTabContainet.classList.add("tab-pane", "active");
+    questionTabContainet.classList.add("tab-pane", "active", "container");
     questionTabContainet.id = "question" + num;
     questionTabContainet.setAttribute("role", "tabpanel");
 
@@ -503,9 +688,13 @@ function getMultiAnswerDiv(num) {
 
     questionTabContainet.appendChild(answersTable);
     var detailsTabContainet = document.createElement("div");
-    detailsTabContainet.classList.add("tab-pane", "details-question");
+    detailsTabContainet.classList.add("tab-pane", "details-question", "container");
     detailsTabContainet.id = "details" + num;
     detailsTabContainet.setAttribute("role", "tabpanel");
+
+    var detailsTabDiv = document.createElement("div");
+    detailsTabDiv.classList.add("input-group");
+
 
     var detailsTabDiv = document.createElement("div");
     detailsTabDiv.classList.add("input-group");
@@ -552,40 +741,40 @@ function getMultiAnswerDiv(num) {
     tabContainet.appendChild(questionTabContainet);
     tabContainet.appendChild(detailsTabContainet);
 
-    questionDiv.appendChild(tabContainet);
+    mainDivContent.appendChild(tabContainet);
 
-    mainDiv.appendChild(questionDiv);
+    mainDiv.appendChild(mainDivContent);
 
     return mainDiv;
+
 }
 
 function getShortQuetionDiv(num) {
     var mainDiv = document.createElement("div");
     mainDiv.classList.add("row");
-    mainDiv.addEventListener("mouseover", (function() { return showClose(this) }));
-    mainDiv.addEventListener("mouseout", (function() { return hideClose(this) }));
 
+    var mainDivContent = document.createElement("div");
+    mainDivContent.classList.add("col-sm-8", "ml-sm-auto", "mr-sm-auto", "question-div");
+    mainDivContent.addEventListener("mouseover", (function() { return showClose(this) }));
+    mainDivContent.addEventListener("mouseout", (function() { return hideClose(this) }));
+
+    var closeIconDiv = document.createElement("div");
     var closeIcon = document.createElement("i");
     closeIcon.id = "newElement";
-    closeIcon.classList.add("fas", "fa-times-circle", "col-sm-offset-2", "close-icon");
+    closeIcon.classList.add("fas", "fa-times-circle", "ml-sm-auto", "mr-sm-auto", "close-icon");
     closeIcon.addEventListener("click", (function() { return closeParent(this) }));
-    mainDiv.appendChild(closeIcon);
-
-    var questionDiv = document.createElement("div");
-    questionDiv.classList.add("col-sm-8", "col-sm-offset-2", "question-div");
+    closeIconDiv.appendChild(closeIcon);
+    mainDivContent.appendChild(closeIconDiv);
 
     var tabs = document.createElement("ul");
     tabs.classList.add("nav", "nav-tabs");
-    tabs.setAttribute("role", "tablist");
 
     var qTab = document.createElement("li");
-    qTab.setAttribute("role", "presentation");
-    qTab.classList.add("active");
+    qTab.classList.add("nav-item");
 
     var qTabLink = document.createElement("a");
+    qTabLink.classList.add("nav-link", "active");
     qTabLink.setAttribute("href", "#question" + num);
-    qTabLink.setAttribute("aria-controls", "question" + num);
-    qTabLink.setAttribute("role", "tab");
     qTabLink.setAttribute("data-toggle", "tab");
     qTabLink.innerHTML = "Question";
     qTab.appendChild(qTabLink);
@@ -594,21 +783,20 @@ function getShortQuetionDiv(num) {
     dTab.setAttribute("role", "presentation");
 
     var dTabLink = document.createElement("a");
+    dTabLink.classList.add("nav-link");
     dTabLink.setAttribute("href", "#details" + num);
-    dTabLink.setAttribute("aria-controls", "details" + num);
-    dTabLink.setAttribute("role", "tab");
     dTabLink.setAttribute("data-toggle", "tab");
     dTabLink.innerHTML = "Details";
     dTab.appendChild(dTabLink);
     tabs.appendChild(qTab);
     tabs.appendChild(dTab);
-    questionDiv.appendChild(tabs);
+    mainDivContent.appendChild(tabs);
 
     var tabContainet = document.createElement("div");
     tabContainet.classList.add("tab-content");
 
     var questionTabContainet = document.createElement("div");
-    questionTabContainet.classList.add("tab-pane", "active");
+    questionTabContainet.classList.add("tab-pane", "active", "container");
     questionTabContainet.id = "question" + num;
     questionTabContainet.setAttribute("role", "tabpanel");
 
@@ -633,9 +821,8 @@ function getShortQuetionDiv(num) {
     answerDiv.setAttribute("rows", "4");
 
     questionTabContainet.appendChild(answerDiv);
-
     var detailsTabContainet = document.createElement("div");
-    detailsTabContainet.classList.add("tab-pane", "details-question");
+    detailsTabContainet.classList.add("tab-pane", "details-question", "container");
     detailsTabContainet.id = "details" + num;
     detailsTabContainet.setAttribute("role", "tabpanel");
 
@@ -658,9 +845,9 @@ function getShortQuetionDiv(num) {
     tabContainet.appendChild(questionTabContainet);
     tabContainet.appendChild(detailsTabContainet);
 
-    questionDiv.appendChild(tabContainet);
+    mainDivContent.appendChild(tabContainet);
 
-    mainDiv.appendChild(questionDiv);
+    mainDiv.appendChild(mainDivContent);
 
     return mainDiv;
 }
@@ -668,30 +855,29 @@ function getShortQuetionDiv(num) {
 function getCompeletQuestionDiv(num) {
     var mainDiv = document.createElement("div");
     mainDiv.classList.add("row");
-    mainDiv.addEventListener("mouseover", (function() { return showClose(this) }));
-    mainDiv.addEventListener("mouseout", (function() { return hideClose(this) }));
 
+    var mainDivContent = document.createElement("div");
+    mainDivContent.classList.add("col-sm-8", "ml-sm-auto", "mr-sm-auto", "question-div");
+    mainDivContent.addEventListener("mouseover", (function() { return showClose(this) }));
+    mainDivContent.addEventListener("mouseout", (function() { return hideClose(this) }));
+
+    var closeIconDiv = document.createElement("div");
     var closeIcon = document.createElement("i");
     closeIcon.id = "newElement";
-    closeIcon.classList.add("fas", "fa-times-circle", "col-sm-offset-2", "close-icon");
+    closeIcon.classList.add("fas", "fa-times-circle", "ml-sm-auto", "mr-sm-auto", "close-icon");
     closeIcon.addEventListener("click", (function() { return closeParent(this) }));
-    mainDiv.appendChild(closeIcon);
-
-    var questionDiv = document.createElement("div");
-    questionDiv.classList.add("col-sm-8", "col-sm-offset-2", "question-div");
+    closeIconDiv.appendChild(closeIcon);
+    mainDivContent.appendChild(closeIconDiv);
 
     var tabs = document.createElement("ul");
     tabs.classList.add("nav", "nav-tabs");
-    tabs.setAttribute("role", "tablist");
 
     var qTab = document.createElement("li");
-    qTab.setAttribute("role", "presentation");
-    qTab.classList.add("active");
+    qTab.classList.add("nav-item");
 
     var qTabLink = document.createElement("a");
+    qTabLink.classList.add("nav-link", "active");
     qTabLink.setAttribute("href", "#question" + num);
-    qTabLink.setAttribute("aria-controls", "question" + num);
-    qTabLink.setAttribute("role", "tab");
     qTabLink.setAttribute("data-toggle", "tab");
     qTabLink.innerHTML = "Question";
     qTab.appendChild(qTabLink);
@@ -700,21 +886,20 @@ function getCompeletQuestionDiv(num) {
     dTab.setAttribute("role", "presentation");
 
     var dTabLink = document.createElement("a");
+    dTabLink.classList.add("nav-link");
     dTabLink.setAttribute("href", "#details" + num);
-    dTabLink.setAttribute("aria-controls", "details" + num);
-    dTabLink.setAttribute("role", "tab");
     dTabLink.setAttribute("data-toggle", "tab");
     dTabLink.innerHTML = "Details";
     dTab.appendChild(dTabLink);
     tabs.appendChild(qTab);
     tabs.appendChild(dTab);
-    questionDiv.appendChild(tabs);
+    mainDivContent.appendChild(tabs);
 
     var tabContainet = document.createElement("div");
     tabContainet.classList.add("tab-content");
 
     var questionTabContainet = document.createElement("div");
-    questionTabContainet.classList.add("tab-pane", "active");
+    questionTabContainet.classList.add("tab-pane", "active", "container");
     questionTabContainet.id = "question" + num;
     questionTabContainet.setAttribute("role", "tabpanel");
 
@@ -761,9 +946,8 @@ function getCompeletQuestionDiv(num) {
 
 
     questionTabContainet.appendChild(contaier);
-
     var detailsTabContainet = document.createElement("div");
-    detailsTabContainet.classList.add("tab-pane", "details-question");
+    detailsTabContainet.classList.add("tab-pane", "details-question", "container");
     detailsTabContainet.id = "details" + num;
     detailsTabContainet.setAttribute("role", "tabpanel");
 
@@ -780,39 +964,15 @@ function getCompeletQuestionDiv(num) {
     detailsTabInput.classList.add("form-control");
     detailsTabInput.setAttribute("type", "number");
     detailsTabInput.setAttribute("aria-describedby", "basic-addon1");
-
-    var allQuestion = document.createElement("input");
-    allQuestion.classList.add("q-radio-details");
-    allQuestion.setAttribute("type", "radio");
-    allQuestion.setAttribute("name", "q");
-    allQuestion.setAttribute("id", "all");
-    var allQuestionLable = document.createElement("label");
-    allQuestionLable.innerHTML = "For All Question"
-    allQuestionLable.setAttribute("for", "all");
-    allQuestionLable.classList.add("q-radio-label")
-    detailsTabDiv.appendChild(allQuestion);
-    detailsTabDiv.appendChild(allQuestionLable);
-
-    var oneAnswer = document.createElement("input");
-    oneAnswer.classList.add("q-radio-details");
-    oneAnswer.setAttribute("type", "radio");
-    oneAnswer.setAttribute("name", "q");
-    oneAnswer.setAttribute("id", "one");
-    var oneAnswerLable = document.createElement("label");
-    oneAnswerLable.innerHTML = "For Every Answer"
-    oneAnswerLable.setAttribute("for", "one");
-    oneAnswerLable.classList.add("q-radio-label")
-    detailsTabDiv.appendChild(oneAnswer);
-    detailsTabDiv.appendChild(oneAnswerLable);
     detailsTabDiv.appendChild(detailsTabInput);
     detailsTabContainet.appendChild(detailsTabDiv);
 
     tabContainet.appendChild(questionTabContainet);
     tabContainet.appendChild(detailsTabContainet);
 
-    questionDiv.appendChild(tabContainet);
+    mainDivContent.appendChild(tabContainet);
 
-    mainDiv.appendChild(questionDiv);
+    mainDiv.appendChild(mainDivContent);
 
     return mainDiv;
 }
